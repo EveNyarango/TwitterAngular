@@ -9,11 +9,13 @@ import { environment } from 'src/environments/environment';
 })
 export class TweetService {
 
+tweetUri = environment.baseUrl + "tweets?tweet=technology" 
+
   constructor(private httpClient: HttpClient) { }
 
   getTweets() : Observable<Tweet[]>{
     const headers = new HttpHeaders().set('content-type', 'application/json')
-    let url = environment.baseUrl + "tweets?tweet=technology" 
-    return this.httpClient.get<Tweet[]>(url, {headers})
+    
+    return this.httpClient.get<Tweet[]>(this.tweetUri, {headers})
   }
 }
